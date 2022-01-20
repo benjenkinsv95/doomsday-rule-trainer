@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/doomsday-rule-trainer/static/css/main.432dfbff.chunk.css",
+    "main.js": "/doomsday-rule-trainer/static/js/main.16ca0aba.chunk.js",
+    "main.js.map": "/doomsday-rule-trainer/static/js/main.16ca0aba.chunk.js.map",
+    "runtime-main.js": "/doomsday-rule-trainer/static/js/runtime-main.e730333e.js",
+    "runtime-main.js.map": "/doomsday-rule-trainer/static/js/runtime-main.e730333e.js.map",
+    "static/js/2.aba7b4d0.chunk.js": "/doomsday-rule-trainer/static/js/2.aba7b4d0.chunk.js",
+    "static/js/2.aba7b4d0.chunk.js.map": "/doomsday-rule-trainer/static/js/2.aba7b4d0.chunk.js.map",
+    "index.html": "/doomsday-rule-trainer/index.html",
+    "static/css/main.432dfbff.chunk.css.map": "/doomsday-rule-trainer/static/css/main.432dfbff.chunk.css.map",
+    "static/js/2.aba7b4d0.chunk.js.LICENSE.txt": "/doomsday-rule-trainer/static/js/2.aba7b4d0.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.e730333e.js",
+    "static/js/2.aba7b4d0.chunk.js",
+    "static/css/main.432dfbff.chunk.css",
+    "static/js/main.16ca0aba.chunk.js"
+  ]
+}
