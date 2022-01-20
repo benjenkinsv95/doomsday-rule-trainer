@@ -6,8 +6,9 @@ import { signUpSuccess, signUpFailure } from '../AutoDismissAlert/messages'
 
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
+import heroStyles from '../../styles/heroStyles'
 
-const SignUp = ({ msgAlert, setUser }) => {
+const SignUp = ({ msgAlert, setUser, user }) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [passwordConfirmation, setPasswordConfirmation] = useState('')
@@ -20,6 +21,9 @@ const SignUp = ({ msgAlert, setUser }) => {
       await signUp(email, password, passwordConfirmation)
       const res = await signIn(email, password)
       setUser(res.data.user)
+      // eslint-disable-next-line no-undef
+      localStorage.setItem('user', JSON.stringify(res.data.user))
+
       msgAlert({
         heading: 'Sign Up Success',
         message: signUpSuccess,
@@ -38,12 +42,12 @@ const SignUp = ({ msgAlert, setUser }) => {
     }
   }
 
-  if (shouldNavigate) {
-    return <Navigate to='/' />
+  if (shouldNavigate || user) {
+    return <Navigate to='/train' />
   }
 
   return (
-    <div className='row'>
+    <div style={heroStyles} className='row'>
       <div className='col-sm-10 col-md-8 mx-auto mt-5'>
         <h3>Sign Up</h3>
         <Form onSubmit={onSignUp}>
@@ -80,7 +84,7 @@ const SignUp = ({ msgAlert, setUser }) => {
               onChange={event => setPasswordConfirmation(event.target.value)}
             />
           </Form.Group>
-          <Button className='mt-2' variant='primary' type='submit'>Submit</Button>
+          <Button className='mt-2' variant='dark' type='submit'>Submit</Button>
         </Form>
       </div>
     </div>

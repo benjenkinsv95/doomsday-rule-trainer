@@ -13,19 +13,22 @@ const SignOut = ({ msgAlert, clearUser, user }) => {
   // for performance reasons, when using `useEffect`
   // it's a best practice to create a helper function w/ async/await
     const performSignOut = async () => {
-    // make a signOut axios request
-      await signOut(user)
-
       msgAlert({
         heading: 'Signed Out Successfully',
         message: signOutSuccess,
         variant: 'success'
       })
 
+      localStorage.removeItem('user')
+
       // reset the user back to its initial value
       clearUser()
       setShouldNavigate(true)
+
+      // make a signOut axios request
+      await signOut(user)
     }
+
     performSignOut()
   }, [])
 

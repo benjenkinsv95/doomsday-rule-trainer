@@ -3,6 +3,7 @@ import { Navigate } from 'react-router-dom'
 
 import { changePassword } from '../../api/auth'
 import { changePasswordSuccess, changePasswordFailure } from '../AutoDismissAlert/messages'
+import heroStyles from '../../styles/heroStyles'
 
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
@@ -35,11 +36,11 @@ const ChangePassword = ({ msgAlert, user }) => {
   }
 
   if (!user || shouldNavigate) {
-    return <Navigate to='/' />
+    return <Navigate to='/train' />
   }
 
   return (
-    <div className='row'>
+    <div style={heroStyles} className='row'>
       <div className='col-sm-10 col-md-8 mx-auto mt-5'>
         <h3>Change Password</h3>
         <Form onSubmit={onChangePassword}>
@@ -66,7 +67,7 @@ const ChangePassword = ({ msgAlert, user }) => {
               }
             />
           </Form.Group>
-          <Button className='mt-2' variant='primary' type='submit'>Submit</Button>
+          <Button className='mt-2' variant='dark' type='submit'>Submit</Button>
         </Form>
       </div>
     </div>

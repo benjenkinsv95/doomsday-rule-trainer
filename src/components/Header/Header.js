@@ -6,29 +6,37 @@ import { Link, NavLink } from 'react-router-dom'
 
 const authenticatedOptions = (
   <>
-    <NavLink to='/change-password' className='nav-link'>Change Password</NavLink>
-    <NavLink to='/sign-out' className='nav-link'>Sign Out</NavLink>
+    <NavLink to='/change-password' className='nav-link'>
+      Change Password
+    </NavLink>
+    <NavLink to='/sign-out' className='nav-link'>
+      Sign Out
+    </NavLink>
   </>
 )
 
 const unauthenticatedOptions = (
   <>
-    <NavLink to='/sign-up' className='nav-link'>Sign Up</NavLink>
-    <NavLink to='/sign-in' className='nav-link'>Sign In</NavLink>
+    <NavLink to='/sign-up' className='nav-link'>
+      Sign Up
+    </NavLink>
+    <NavLink to='/sign-in' className='nav-link'>
+      Sign In
+    </NavLink>
   </>
 )
 
 const alwaysOptions = (
-  <>
-    <NavLink to='/' className='nav-link'>Home</NavLink>
-  </>
+  <>{/* <NavLink to='/' className='nav-link'>Home</NavLink> */}</>
 )
 
 const Header = ({ user }) => (
-  <Navbar bg='primary' variant='dark' expand='md'>
+  <Navbar bg='dark' variant='dark' expand='md'>
     <Container>
       <Navbar.Brand>
-        <Link to='/' style={{ color: '#FFF', textDecoration: 'none' }}>react-auth-template</Link>
+        <Link to='/' style={{ color: '#FFF', textDecoration: 'none' }}>
+          Doomsday Rule Trainer
+        </Link>
       </Navbar.Brand>
       <Navbar.Toggle aria-controls='basic-navbar-nav' />
       <Navbar.Collapse id='basic-navbar-nav'>

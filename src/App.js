@@ -10,6 +10,9 @@ import SignIn from './components/auth/SignIn'
 import SignOut from './components/auth/SignOut'
 import ChangePassword from './components/auth/ChangePassword'
 
+import Trainer from './components/trainer/Trainer'
+import UnauthenticatedHome from './components/UnauthenticatedHome'
+
 const App = () => {
   const [user, setUser] = useState(null)
   const [msgAlerts, setMsgAlerts] = useState([])
@@ -33,7 +36,7 @@ const App = () => {
           id={msgAlert.id}
         />
       ))}
-      <main className='container'>
+      <main>
         <Routes>
           <Route
             path='/sign-up'
@@ -50,6 +53,13 @@ const App = () => {
           <Route
             path='/change-password'
             element={<ChangePassword msgAlert={msgAlert} user={user} /> }
+          />
+
+          <Route path='/' element={<UnauthenticatedHome user={user} />} />
+
+          <Route
+            path='/train'
+            element={<Trainer msgAlert={msgAlert} user={user} />}
           />
 
         </Routes>

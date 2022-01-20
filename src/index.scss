@@ -1,1 +1,9 @@
+$primary: #58EFEC;
+$secondary: #E85C90;
+
 @import '~bootstrap/scss/bootstrap';
+
+head,
+body {
+  margin: 0;
+}
