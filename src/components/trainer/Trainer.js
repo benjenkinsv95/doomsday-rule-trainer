@@ -24,8 +24,9 @@ const Trainer = ({ msgAlert }) => {
   ] = useState('')
   const [secondOddOrEven, setSecondOddOrEven] = useState('')
   const [modulo7, setModulo7] = useState('-1')
-  const [subtractFrom7, setSubtractFrom7] = useState('')
+  const [subtractFrom7, setSubtractFrom7] = useState('-1')
   const [anchorDay, setAnchorDay] = useState('')
+  const [dayOfWeek, setDayOfWeek] = useState('')
 
   const month = date.toLocaleString('default', { month: 'long' })
   const startingNumberAnswer = date.getFullYear() % 100
@@ -44,7 +45,8 @@ const Trainer = ({ msgAlert }) => {
   }
   const modulo7Answers = secondOddOrEvenAnswers.map(n => n % 7)
   const subtractFrom7Answers = modulo7Answers.map(n => 7 - n)
-  const anchorDayAnswer = date.toLocaleString('en-us', { weekday: 'long' })
+  const anchorDayAnswer = new Date(`${date.getFullYear()}-04-04T12:00:00`).toLocaleString('en-us', { weekday: 'long' })
+  const dayOfWeekAnswer = date.toLocaleString('en-us', { weekday: 'long' })
 
   const reset = () => {
     setDate(newDate())
@@ -53,8 +55,9 @@ const Trainer = ({ msgAlert }) => {
     setAfterDivision('')
     setSecondOddOrEven('')
     setModulo7('-1')
-    setSubtractFrom7('')
+    setSubtractFrom7('-1')
     setAnchorDay('')
+    setDayOfWeek('')
   }
 
   return (
@@ -86,11 +89,11 @@ const Trainer = ({ msgAlert }) => {
                     </Form.Text>
 
                     <Form.Control
-                      className='mt-1'
+                      className='mt-1 bg-dark text-primary'
                       type='number'
                       placeholder='Enter Starting Number'
                       value={startingNumber}
-                      onChange={e => setStartingNumber(+e.target.value)}
+                      onChange={e => setStartingNumber(parseInt(e.target.value))}
                       disabled={startingNumber === startingNumberAnswer}
                     />
                   </Form.Group>
@@ -107,11 +110,11 @@ const Trainer = ({ msgAlert }) => {
           If the number is odd add 11 or subtract 17 (whichever is easier).
                     </Form.Text>
                     <Form.Control
-                      className='mt-1'
+                      className='mt-1 bg-dark text-primary'
                       type='number'
                       placeholder='Enter Answer'
                       value={firstOddOrEven}
-                      onChange={e => setFirstOddOrEven(+e.target.value)}
+                      onChange={e => setFirstOddOrEven(parseInt(e.target.value))}
                       disabled={firstOddOrEvenAnswers.includes(firstOddOrEven)}
                     />
                   </Form.Group>
@@ -124,11 +127,11 @@ const Trainer = ({ msgAlert }) => {
                   >
                     <Form.Label>Divide by 2</Form.Label>
                     <Form.Control
-                      className='mt-1'
+                      className='mt-1 bg-dark text-primary'
                       type='number'
                       placeholder='Enter Answer'
                       value={afterDivision}
-                      onChange={e => setAfterDivision(+e.target.value)}
+                      onChange={e => setAfterDivision(parseInt(e.target.value))}
                       disabled={afterDivisionAnswers.includes(afterDivision)}
                     />
                   </Form.Group>
@@ -143,11 +146,11 @@ const Trainer = ({ msgAlert }) => {
     If the number is odd add 11 or subtract 17 (whichever is easier).
                     </Form.Text>
                     <Form.Control
-                      className='mt-1'
+                      className='mt-1 bg-dark text-primary'
                       type='number'
                       placeholder='Enter Answer'
                       value={secondOddOrEven}
-                      onChange={e => setSecondOddOrEven(+e.target.value)}
+                      onChange={e => setSecondOddOrEven(parseInt(e.target.value))}
                       disabled={secondOddOrEvenAnswers.includes(secondOddOrEven)}
                     />
                   </Form.Group>
@@ -166,12 +169,10 @@ const Trainer = ({ msgAlert }) => {
                       {[0, 1, 2, 3, 4, 5, 6].map(num => (
                         <Button
                           key={num}
+                          variant={modulo7Answers.includes(modulo7) && modulo7 === num
+                            ? 'primary'
+                            : 'outline-primary'}
                           disabled={modulo7Answers.includes(modulo7)}
-                          className={
-                            modulo7Answers.includes(modulo7) && modulo7 === num
-                              ? 'bg-success text-white'
-                              : ''
-                          }
                           onClick={() => setModulo7(num)}
                         >
                           {num}
@@ -198,7 +199,9 @@ const Trainer = ({ msgAlert }) => {
                         <Button
                           key={num}
                           disabled={subtractFrom7Answers.includes(subtractFrom7)}
-                          className={subtractFrom7Answers.includes(subtractFrom7) && subtractFrom7 === num ? 'bg-success text-white' : 'bg-primary'}
+                          variant={subtractFrom7Answers.includes(subtractFrom7) && subtractFrom7 === num
+                            ? 'primary'
+                            : 'outline-primary'}
                           onClick={() => setSubtractFrom7(num)}>{num}</Button>
                       ))}
                     </ButtonGroup>
@@ -216,8 +219,10 @@ const Trainer = ({ msgAlert }) => {
                       {['Sunday', 'Monday', 'Tuesday', 'Wednesday'].map((day, index) => (
                         <Button
                           key={index}
+                          variant={anchorDay.toLowerCase() === anchorDayAnswer.toLowerCase() && anchorDay.toLowerCase() === day.toLowerCase()
+                            ? 'primary'
+                            : 'outline-primary'}
                           disabled={anchorDay.toLowerCase() === anchorDayAnswer.toLowerCase()}
-                          className={anchorDay.toLowerCase() === anchorDayAnswer.toLowerCase() && anchorDay.toLowerCase() === day.toLowerCase() ? 'bg-success text-white' : ''}
                           onClick={() => setAnchorDay(day)}>{day}</Button>
                       ))}
                     </ButtonGroup>
@@ -225,9 +230,43 @@ const Trainer = ({ msgAlert }) => {
                       {['Thursday', 'Friday', 'Saturday'].map((day, index) => (
                         <Button
                           key={index}
+                          variant={anchorDay.toLowerCase() === anchorDayAnswer.toLowerCase() && anchorDay.toLowerCase() === day.toLowerCase()
+                            ? 'primary'
+                            : 'outline-primary'}
                           disabled={anchorDay.toLowerCase() === anchorDayAnswer.toLowerCase()}
-                          className={anchorDay.toLowerCase() === anchorDayAnswer.toLowerCase() && anchorDay.toLowerCase() === day.toLowerCase() ? 'bg-success text-white' : ''}
                           onClick={() => setAnchorDay(day)}>{day}</Button>
+                      ))}
+                    </ButtonGroup>
+                  </Form.Group>
+
+                  <Form.Group
+                    className={`mb-3 ${anchorDay.toLowerCase() === anchorDayAnswer.toLowerCase() ? '' : 'd-none'}`}
+                    controlId='modulo7'
+                  >
+                    <Form.Label>Calculate Day of Week</Form.Label>
+                    <br></br>
+                    <Form.Text className='text-white'>Use the doomsday number to calculate the day of the week.</Form.Text>
+                    <br />
+                    <ButtonGroup className="mt-1 text-white" aria-label="First group">
+                      {['Sunday', 'Monday', 'Tuesday', 'Wednesday'].map((day, index) => (
+                        <Button
+                          key={index}
+                          variant={dayOfWeek.toLowerCase() === dayOfWeekAnswer.toLowerCase() && dayOfWeek.toLowerCase() === day.toLowerCase()
+                            ? 'primary'
+                            : 'outline-primary'}
+                          disabled={dayOfWeek.toLowerCase() === dayOfWeekAnswer.toLowerCase()}
+                          onClick={() => setDayOfWeek(day)}>{day}</Button>
+                      ))}
+                    </ButtonGroup>
+                    <ButtonGroup className="mt-1 text-white" aria-label="First group">
+                      {['Thursday', 'Friday', 'Saturday'].map((day, index) => (
+                        <Button
+                          key={index}
+                          variant={dayOfWeek.toLowerCase() === dayOfWeekAnswer.toLowerCase() && dayOfWeek.toLowerCase() === day.toLowerCase()
+                            ? 'primary'
+                            : 'outline-primary'}
+                          disabled={dayOfWeek.toLowerCase() === dayOfWeekAnswer.toLowerCase()}
+                          onClick={() => setDayOfWeek(day)}>{day}</Button>
                       ))}
                     </ButtonGroup>
                   </Form.Group>
@@ -236,7 +275,7 @@ const Trainer = ({ msgAlert }) => {
               </Card.Body>
               <Card.Footer>
                 <Button
-                  variant='primary'
+                  variant="secondary"
                   size='lg'
                   onClick={() => reset()}>New Date</Button>
                 <Notes/>
