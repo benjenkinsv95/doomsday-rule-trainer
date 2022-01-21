@@ -7,3 +7,18 @@ head,
 body {
   margin: 0;
 }
+
+.accordion-button:not(.collapsed) {
+    // color:  #212529;
+}
+
+.accordion-header, .accordion-header > button {
+  background-color:  #212529!important;
+  color: white;
+}
+
+.form-control {
+  width: unset;
+  margin-left: auto;
+  margin-right: auto;
+}

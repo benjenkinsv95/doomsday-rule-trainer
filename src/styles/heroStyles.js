@@ -10,7 +10,7 @@ export const centerStyles = {
 
 export const gradientStyles = {
   background:
-    'linear-gradient(0deg, #58EFEC 0%, #E85C90 100%)',
+    'linear-gradient(45deg, #e85c90, #dd72c1, #c08eea, #95a8ff, #5dbfff, #17d2ff, #14e2ff, #58efec)',
   color: 'white',
   /* Take up 30% of the viewport's height, (30 out of 100) */
   minHeight: `calc(100vh - ${headerHeight})`
