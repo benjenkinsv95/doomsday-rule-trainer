@@ -13,7 +13,7 @@ function randomDate (start, end) {
 }
 
 const newDate = () => {
-  return randomDate(new Date('1900-01-01T12:00:00'), new Date('2099-12-31T12:00:00'))
+  return randomDate(new Date('1700-01-01T12:00:00'), new Date('2299-12-31T12:00:00'))
 }
 
 const Trainer = ({ msgAlert }) => {
