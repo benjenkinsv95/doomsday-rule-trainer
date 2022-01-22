@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import heroStyles from '../../styles/heroStyles'
 import Card from 'react-bootstrap/Card'
 import Form from 'react-bootstrap/Form'
@@ -27,6 +27,16 @@ const Trainer = ({ msgAlert }) => {
   const [subtractFrom7, setSubtractFrom7] = useState('-1')
   const [anchorDay, setAnchorDay] = useState('')
   const [dayOfWeek, setDayOfWeek] = useState('')
+  const refs = {
+    startingNumber: useRef(null),
+    firstOddOrEven: useRef(null),
+    afterDivision: useRef(null),
+    secondOddOrEven: useRef(null),
+    modulo7: useRef(null),
+    subtractFrom7: useRef(null),
+    anchorDay: useRef(null),
+    dayOfWeek: useRef(null)
+  }
 
   const month = date.toLocaleString('default', { month: 'long' })
   const startingNumberAnswer = date.getFullYear() % 100
@@ -47,6 +57,27 @@ const Trainer = ({ msgAlert }) => {
   const subtractFrom7Answers = modulo7Answers.map(n => 7 - n)
   const anchorDayAnswer = new Date(`${date.getFullYear()}-04-04T12:00:00`).toLocaleString('en-us', { weekday: 'long' })
   const dayOfWeekAnswer = date.toLocaleString('en-us', { weekday: 'long' })
+
+  // set focus
+  useEffect(() => {
+    if (startingNumber !== startingNumberAnswer) {
+      refs.startingNumber.current?.focus()
+    } else if (!firstOddOrEvenAnswers.includes(firstOddOrEven)) {
+      refs.firstOddOrEven.current?.focus()
+    } else if (!afterDivisionAnswers.includes(afterDivision)) {
+      refs.afterDivision.current?.focus()
+    } else if (!secondOddOrEvenAnswers.includes(secondOddOrEven)) {
+      refs.secondOddOrEven.current?.focus()
+    } else if (!modulo7Answers.includes(modulo7)) {
+      refs.modulo7.current?.focus()
+    } else if (!subtractFrom7Answers.includes(subtractFrom7)) {
+      refs.subtractFrom7.current?.focus()
+    } else if (anchorDay.toLowerCase() !== anchorDayAnswer.toLowerCase()) {
+      refs.anchorDay.current?.focus()
+    } else if (dayOfWeek.toLowerCase() !== dayOfWeekAnswer.toLowerCase()) {
+      refs.dayOfWeek.current?.focus()
+    }
+  })
 
   const reset = () => {
     setDate(newDate())
@@ -95,6 +126,7 @@ const Trainer = ({ msgAlert }) => {
                       value={startingNumber}
                       onChange={e => setStartingNumber(parseInt(e.target.value))}
                       disabled={startingNumber === startingNumberAnswer}
+                      ref={refs.startingNumber}
                     />
                   </Form.Group>
 
@@ -116,6 +148,7 @@ const Trainer = ({ msgAlert }) => {
                       value={firstOddOrEven}
                       onChange={e => setFirstOddOrEven(parseInt(e.target.value))}
                       disabled={firstOddOrEvenAnswers.includes(firstOddOrEven)}
+                      ref={refs.firstOddOrEven}
                     />
                   </Form.Group>
 
@@ -133,6 +166,7 @@ const Trainer = ({ msgAlert }) => {
                       value={afterDivision}
                       onChange={e => setAfterDivision(parseInt(e.target.value))}
                       disabled={afterDivisionAnswers.includes(afterDivision)}
+                      ref={refs.afterDivision}
                     />
                   </Form.Group>
 
@@ -152,6 +186,7 @@ const Trainer = ({ msgAlert }) => {
                       value={secondOddOrEven}
                       onChange={e => setSecondOddOrEven(parseInt(e.target.value))}
                       disabled={secondOddOrEvenAnswers.includes(secondOddOrEven)}
+                      ref={refs.secondOddOrEven}
                     />
                   </Form.Group>
 
@@ -165,7 +200,8 @@ const Trainer = ({ msgAlert }) => {
                         Find the remainder after dividing by 7
                     </Form.Text>
                     <br />
-                    <ButtonGroup className="mt-1 text-white" aria-label="First group">
+                    <ButtonGroup className="mt-1 text-white" aria-label="First group"
+                      ref={refs.modulo7}>
                       {[0, 1, 2, 3, 4, 5, 6].map(num => (
                         <Button
                           key={num}
@@ -194,7 +230,8 @@ const Trainer = ({ msgAlert }) => {
                         Subtract result from 7
                     </Form.Text>
                     <br/>
-                    <ButtonGroup className="mt-1 text-white" aria-label="First group">
+                    <ButtonGroup className="mt-1 text-white" aria-label="First group"
+                      ref={refs.subtractFrom7}>
                       {[1, 2, 3, 4, 5, 6, 7].map(num => (
                         <Button
                           key={num}
@@ -213,9 +250,10 @@ const Trainer = ({ msgAlert }) => {
                   >
                     <Form.Label>Count Forward {subtractFrom7Answers.length && subtractFrom7Answers[0]} Days</Form.Label>
                     <br></br>
-                    <Form.Text className='text-white'>Count forward {subtractFrom7Answers.length && subtractFrom7Answers[0]} days from the century&#39;s anchor day to get the year&#39;s anchor day.</Form.Text>
+                    <Form.Text className='text-white'>Count forward {subtractFrom7Answers.length && subtractFrom7Answers[0]} days from the century&#39;s anchor day to get the year <span className='text-secondary'>{date.getFullYear()}</span>&#39;s anchor day.</Form.Text>
                     <br />
-                    <ButtonGroup className="mt-1 text-white" aria-label="First group">
+                    <ButtonGroup className="mt-1 text-white" aria-label="First group"
+                      ref={refs.anchorDay}>
                       {['Sunday', 'Monday', 'Tuesday', 'Wednesday'].map((day, index) => (
                         <Button
                           key={index}
@@ -247,7 +285,8 @@ const Trainer = ({ msgAlert }) => {
                     <br></br>
                     <Form.Text className='text-white'>Use the doomsday number to calculate the day of the week.</Form.Text>
                     <br />
-                    <ButtonGroup className="mt-1 text-white" aria-label="First group">
+                    <ButtonGroup className="mt-1 text-white" aria-label="First group"
+                      ref={refs.dayOfWeek}>
                       {['Sunday', 'Monday', 'Tuesday', 'Wednesday'].map((day, index) => (
                         <Button
                           key={index}
