@@ -102,7 +102,7 @@ const Trainer = ({ msgAlert }) => {
                   <h2>
         What day of the week is{' '}
                     <span className='text-secondary'>
-                      {month} {date.getDate()} {date.getFullYear()}
+                      {month}&nbsp;{date.getDate()}&nbsp;{date.getFullYear()}
                     </span>{' '}
         on?
                   </h2>
