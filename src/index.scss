@@ -17,6 +17,11 @@ body {
   color: white;
 }
 
+.accordion-button::after {
+  background-color: $secondary;
+  color: $primary;
+}
+
 .form-control {
   width: unset;
   margin-left: auto;

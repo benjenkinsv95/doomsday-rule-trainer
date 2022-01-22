@@ -317,8 +317,17 @@ const Trainer = ({ msgAlert }) => {
                   variant="secondary"
                   size='lg'
                   onClick={() => reset()}>New Date</Button>
-                <Notes/>
               </Card.Footer>
+            </Card>
+
+            <Card className='text-center mt-4 pb-2' bg='dark' text='white'>
+              <Card.Body>
+                <Card.Title>
+                  <h2 className='text-primary'>Notes</h2>
+                  <Notes/>
+                </Card.Title>
+
+              </Card.Body>
             </Card>
 
           </div>
