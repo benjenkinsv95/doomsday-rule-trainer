@@ -101,7 +101,7 @@ const Trainer = ({ msgAlert }) => {
                 <Card.Title>
                   <h2>
         What day of the week is{' '}
-                    <span className='text-primary'>
+                    <span className='text-secondary'>
                       {month} {date.getDate()} {date.getFullYear()}
                     </span>{' '}
         on?
@@ -109,7 +109,7 @@ const Trainer = ({ msgAlert }) => {
                 </Card.Title>
 
                 <h2>
-      First find the <span className='text-secondary'>anchor day</span>
+      First find the <span className='text-primary'>anchor day</span>
                 </h2>
                 <Form>
                   <Form.Group className='my-3' controlId='startingNumber'>
@@ -120,7 +120,7 @@ const Trainer = ({ msgAlert }) => {
                     </Form.Text>
 
                     <Form.Control
-                      className='mt-1 bg-dark text-primary'
+                      className='mt-2 bg-dark text-primary'
                       type='number'
                       placeholder='Enter Starting Number'
                       value={startingNumber}
@@ -142,7 +142,7 @@ const Trainer = ({ msgAlert }) => {
           If the number is odd add 11 or subtract 17 (whichever is easier).
                     </Form.Text>
                     <Form.Control
-                      className='mt-1 bg-dark text-primary'
+                      className='mt-2 bg-dark text-primary'
                       type='number'
                       placeholder='Enter Answer'
                       value={firstOddOrEven}
@@ -160,7 +160,7 @@ const Trainer = ({ msgAlert }) => {
                   >
                     <Form.Label>Divide by 2</Form.Label>
                     <Form.Control
-                      className='mt-1 bg-dark text-primary'
+                      className='mt-2 bg-dark text-primary'
                       type='number'
                       placeholder='Enter Answer'
                       value={afterDivision}
@@ -180,7 +180,7 @@ const Trainer = ({ msgAlert }) => {
     If the number is odd add 11 or subtract 17 (whichever is easier).
                     </Form.Text>
                     <Form.Control
-                      className='mt-1 bg-dark text-primary'
+                      className='mt-2 bg-dark text-primary'
                       type='number'
                       placeholder='Enter Answer'
                       value={secondOddOrEven}
@@ -200,7 +200,7 @@ const Trainer = ({ msgAlert }) => {
                         Find the remainder after dividing by 7
                     </Form.Text>
                     <br />
-                    <ButtonGroup className="mt-1 text-white" aria-label="First group"
+                    <ButtonGroup className="mt-2 text-white" aria-label="First group"
                       ref={refs.modulo7}>
                       {[0, 1, 2, 3, 4, 5, 6].map(num => (
                         <Button
@@ -230,7 +230,7 @@ const Trainer = ({ msgAlert }) => {
                         Subtract result from 7
                     </Form.Text>
                     <br/>
-                    <ButtonGroup className="mt-1 text-white" aria-label="First group"
+                    <ButtonGroup className="mt-2 text-white" aria-label="First group"
                       ref={refs.subtractFrom7}>
                       {[1, 2, 3, 4, 5, 6, 7].map(num => (
                         <Button
@@ -252,7 +252,7 @@ const Trainer = ({ msgAlert }) => {
                     <br></br>
                     <Form.Text className='text-white'>Count forward {subtractFrom7Answers.length && subtractFrom7Answers[0]} days from the century&#39;s anchor day to get the year <span className='text-secondary'>{date.getFullYear()}</span>&#39;s anchor day.</Form.Text>
                     <br />
-                    <ButtonGroup className="mt-1 text-white" aria-label="First group"
+                    <ButtonGroup className="mt-2 text-white" aria-label="First group"
                       ref={refs.anchorDay}>
                       {['Sunday', 'Monday', 'Tuesday', 'Wednesday'].map((day, index) => (
                         <Button
@@ -264,7 +264,7 @@ const Trainer = ({ msgAlert }) => {
                           onClick={() => setAnchorDay(day)}>{day}</Button>
                       ))}
                     </ButtonGroup>
-                    <ButtonGroup className="mt-1 text-white" aria-label="First group">
+                    <ButtonGroup className="mt-2 text-white" aria-label="First group">
                       {['Thursday', 'Friday', 'Saturday'].map((day, index) => (
                         <Button
                           key={index}
@@ -278,14 +278,16 @@ const Trainer = ({ msgAlert }) => {
                   </Form.Group>
 
                   <Form.Group
-                    className={`mb-3 ${anchorDay.toLowerCase() === anchorDayAnswer.toLowerCase() ? '' : 'd-none'}`}
+                    className={`${anchorDay.toLowerCase() === anchorDayAnswer.toLowerCase() ? '' : 'd-none'}`}
                     controlId='modulo7'
                   >
                     <Form.Label>Calculate Day of Week</Form.Label>
                     <br></br>
-                    <Form.Text className='text-white'>Use the doomsday number to calculate the day of the week.</Form.Text>
+                    <Form.Text className='text-white'>Use the doomsday number to calculate the day of the week for <span className='text-secondary'>
+                      {month}&nbsp;{date.getDate()}&nbsp;{date.getFullYear()}
+                    </span>{' '}</Form.Text>
                     <br />
-                    <ButtonGroup className="mt-1 text-white" aria-label="First group"
+                    <ButtonGroup className="mt-2 text-white" aria-label="First group"
                       ref={refs.dayOfWeek}>
                       {['Sunday', 'Monday', 'Tuesday', 'Wednesday'].map((day, index) => (
                         <Button
@@ -297,7 +299,7 @@ const Trainer = ({ msgAlert }) => {
                           onClick={() => setDayOfWeek(day)}>{day}</Button>
                       ))}
                     </ButtonGroup>
-                    <ButtonGroup className="mt-1 text-white" aria-label="First group">
+                    <ButtonGroup className="mt-2 mb-3 text-white" aria-label="First group">
                       {['Thursday', 'Friday', 'Saturday'].map((day, index) => (
                         <Button
                           key={index}
@@ -309,15 +311,11 @@ const Trainer = ({ msgAlert }) => {
                       ))}
                     </ButtonGroup>
                   </Form.Group>
-
+                  <Button variant='outline-primary' size='lg' onClick={() => reset()}>
+  New Date
+                  </Button>
                 </Form>
               </Card.Body>
-              <Card.Footer>
-                <Button
-                  variant="secondary"
-                  size='lg'
-                  onClick={() => reset()}>New Date</Button>
-              </Card.Footer>
             </Card>
 
             <Card className='text-center mt-4 pb-2' bg='dark' text='white'>
