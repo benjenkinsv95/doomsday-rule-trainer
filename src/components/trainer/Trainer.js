@@ -95,7 +95,7 @@ const Trainer = ({ msgAlert }) => {
     <div style={heroStyles}>
       <div className='container'>
         <div className='row'>
-          <div className='col-sm-10 col-md-10 mx-auto'>
+          <div className='col-sm-12 col-md-10 col-lg-7 mx-auto'>
             <Card className='text-center mt-4 pb-2' bg='dark' text='white'>
               <Card.Body>
                 <Card.Title>
@@ -287,7 +287,7 @@ const Trainer = ({ msgAlert }) => {
                       {month}&nbsp;{date.getDate()}&nbsp;{date.getFullYear()}
                     </span>{' '}</Form.Text>
                     <br />
-                    <ButtonGroup className="mt-2 text-white" aria-label="First group"
+                    <ButtonGroup className="mt-1 mb-2 text-white" aria-label="First group"
                       ref={refs.dayOfWeek}>
                       {['Sunday', 'Monday', 'Tuesday', 'Wednesday'].map((day, index) => (
                         <Button
@@ -299,7 +299,7 @@ const Trainer = ({ msgAlert }) => {
                           onClick={() => setDayOfWeek(day)}>{day}</Button>
                       ))}
                     </ButtonGroup>
-                    <ButtonGroup className="mt-2 mb-3 text-white" aria-label="First group">
+                    <ButtonGroup className="mt-1 mb-2 text-white" aria-label="First group">
                       {['Thursday', 'Friday', 'Saturday'].map((day, index) => (
                         <Button
                           key={index}
@@ -311,6 +311,7 @@ const Trainer = ({ msgAlert }) => {
                       ))}
                     </ButtonGroup>
                   </Form.Group>
+                  {dayOfWeek.toLowerCase() === dayOfWeekAnswer.toLowerCase() && (<h2 className="my-2">Nicely done! 🎉🥳</h2>)}
                   <Button variant='outline-primary' size='lg' onClick={() => reset()}>
   New Date
                   </Button>
