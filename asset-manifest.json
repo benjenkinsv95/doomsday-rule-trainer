@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/doomsday-rule-trainer/static/css/main.a3f5c8bf.chunk.css",
-    "main.js": "/doomsday-rule-trainer/static/js/main.ad1749db.chunk.js",
-    "main.js.map": "/doomsday-rule-trainer/static/js/main.ad1749db.chunk.js.map",
+    "main.js": "/doomsday-rule-trainer/static/js/main.0c5e0285.chunk.js",
+    "main.js.map": "/doomsday-rule-trainer/static/js/main.0c5e0285.chunk.js.map",
     "runtime-main.js": "/doomsday-rule-trainer/static/js/runtime-main.e730333e.js",
     "runtime-main.js.map": "/doomsday-rule-trainer/static/js/runtime-main.e730333e.js.map",
     "static/js/2.acde07d9.chunk.js": "/doomsday-rule-trainer/static/js/2.acde07d9.chunk.js",
@@ -15,6 +15,6 @@
     "static/js/runtime-main.e730333e.js",
     "static/js/2.acde07d9.chunk.js",
     "static/css/main.a3f5c8bf.chunk.css",
-    "static/js/main.ad1749db.chunk.js"
+    "static/js/main.0c5e0285.chunk.js"
   ]
 }
