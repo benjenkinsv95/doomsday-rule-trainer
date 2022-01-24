@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import React, { useState, useRef, useEffect } from 'react'
 import heroStyles from '../../styles/heroStyles'
 import Card from 'react-bootstrap/Card'
@@ -31,6 +32,9 @@ const Trainer = ({ msgAlert }) => {
   const [subtractFrom7, setSubtractFrom7] = useState('-1')
   const [anchorDay, setAnchorDay] = useState('')
   const [dayOfWeek, setDayOfWeek] = useState('')
+  const [startedTimestamp, setStartedTimestamp] = useState(performance.now())
+  const [completedTimestamp, setCompletedTimestamp] = useState(null)
+
   const refs = {
     startingNumber: useRef(null),
     firstOddOrEven: useRef(null),
@@ -83,6 +87,10 @@ const Trainer = ({ msgAlert }) => {
     }
   })
 
+  if (dayOfWeek.toLowerCase() === dayOfWeekAnswer.toLowerCase() && !completedTimestamp) {
+    setCompletedTimestamp(performance.now())
+  }
+
   const reset = () => {
     setDate(newDate())
     setStartingNumber('')
@@ -93,6 +101,8 @@ const Trainer = ({ msgAlert }) => {
     setSubtractFrom7('-1')
     setAnchorDay('')
     setDayOfWeek('')
+    setStartedTimestamp(performance.now())
+    setCompletedTimestamp(null)
   }
 
   return (
@@ -314,7 +324,10 @@ const Trainer = ({ msgAlert }) => {
                       ))}
                     </ButtonGroup>
                   </Form.Group>
-                  {dayOfWeek.toLowerCase() === dayOfWeekAnswer.toLowerCase() && (<h2 className="my-2">Nicely done! 🎉🥳</h2>)}
+                  {dayOfWeek.toLowerCase() === dayOfWeekAnswer.toLowerCase() && (<>
+                    <h2 className='my-2'>Nicely done! 🎉🥳</h2>
+                    <h4>{((completedTimestamp - startedTimestamp) / 1000).toFixed(2)} seconds</h4>
+                  </>)}
                   <Button variant='outline-primary' size='lg' onClick={() => reset()}>
   New Date
                   </Button>
