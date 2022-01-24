@@ -14,7 +14,7 @@ function randomDate (start, end) {
 }
 
 const newDate = () => {
-  const date = randomDate(new Date('1900-01-01T12:00:00'), new Date('2099-12-31T12:00:00'))
+  const date = randomDate(new Date('1700-01-01T12:00:00'), new Date('2299-12-31T12:00:00'))
   const century = Math.floor(date.getFullYear() / 100) * 100
 
   date.setFullYear(century + date.getFullYear() % 10)
