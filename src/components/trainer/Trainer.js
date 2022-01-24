@@ -13,7 +13,11 @@ function randomDate (start, end) {
 }
 
 const newDate = () => {
-  return randomDate(new Date('1700-01-01T12:00:00'), new Date('2299-12-31T12:00:00'))
+  const date = randomDate(new Date('1900-01-01T12:00:00'), new Date('2099-12-31T12:00:00'))
+  const century = Math.floor(date.getFullYear() / 100) * 100
+
+  date.setFullYear(century + date.getFullYear() % 10)
+  return date
 }
 
 const Trainer = ({ msgAlert }) => {
@@ -278,7 +282,6 @@ const Trainer = ({ msgAlert }) => {
                   </Form.Group>
 
                   <Form.Group
-                    className={`${anchorDay.toLowerCase() === anchorDayAnswer.toLowerCase() ? '' : 'd-none'}`}
                     controlId='modulo7'
                   >
                     <Form.Label>Calculate Day of Week</Form.Label>

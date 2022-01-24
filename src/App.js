@@ -11,7 +11,7 @@ import SignOut from './components/auth/SignOut'
 import ChangePassword from './components/auth/ChangePassword'
 
 import Trainer from './components/trainer/Trainer'
-import UnauthenticatedHome from './components/UnauthenticatedHome'
+// import UnauthenticatedHome from './components/UnauthenticatedHome'
 
 const App = () => {
   const [user, setUser] = useState(null)
@@ -55,7 +55,8 @@ const App = () => {
             element={<ChangePassword msgAlert={msgAlert} user={user} /> }
           />
 
-          <Route path='/' element={<UnauthenticatedHome user={user} />} />
+          <Route path='/' element={<Trainer user={user} />} />
+          {/* <Route path='/' element={<UnauthenticatedHome user={user} />} /> */}
 
           <Route
             path='/train'
