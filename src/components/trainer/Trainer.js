@@ -68,22 +68,27 @@ const Trainer = ({ msgAlert }) => {
 
   // set focus
   useEffect(() => {
+    let refToFocus
     if (startingNumber !== startingNumberAnswer) {
-      refs.startingNumber.current?.focus()
+      refToFocus = refs.startingNumber
     } else if (!firstOddOrEvenAnswers.includes(firstOddOrEven)) {
-      refs.firstOddOrEven.current?.focus()
+      refToFocus = refs.firstOddOrEven
     } else if (!afterDivisionAnswers.includes(afterDivision)) {
-      refs.afterDivision.current?.focus()
+      refToFocus = refs.afterDivision
     } else if (!secondOddOrEvenAnswers.includes(secondOddOrEven)) {
-      refs.secondOddOrEven.current?.focus()
+      refToFocus = refs.secondOddOrEven
     } else if (!modulo7Answers.includes(modulo7)) {
-      refs.modulo7.current?.focus()
+      refToFocus = refs.modulo7
     } else if (!subtractFrom7Answers.includes(subtractFrom7)) {
-      refs.subtractFrom7.current?.focus()
+      refToFocus = refs.subtractFrom7
     } else if (anchorDay.toLowerCase() !== anchorDayAnswer.toLowerCase()) {
-      refs.anchorDay.current?.focus()
+      refToFocus = refs.anchorDay
     } else if (dayOfWeek.toLowerCase() !== dayOfWeekAnswer.toLowerCase()) {
-      refs.dayOfWeek.current?.focus()
+      refToFocus = refs.dayOfWeek
+    }
+    refToFocus?.current?.focus()
+    if (startingNumber === startingNumberAnswer) {
+      refToFocus?.current?.scrollIntoView(true)
     }
   })
 
